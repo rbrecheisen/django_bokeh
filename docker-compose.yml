@@ -15,7 +15,7 @@ services:
     build: .
     image: rbrecheisen/django_bokeh:latest
     container_name: django_bokeh_app
-    command: bash -c "gunicorn server.wsgi -b 0.0.0.0:8001"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn server.wsgi -b 0.0.0.0:8001"
     environment:
       - SECRET_KEY
     volumes:
