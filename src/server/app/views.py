@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource, FactorRange
@@ -7,7 +8,8 @@ from bokeh.palettes import Spectral6
 from bokeh.transform import factor_cmap
 
 
-def home(request):
+@login_required
+def dashboard(request):
 
     fruits = ['Apples', 'Pears', 'Nectarines', 'Plums', 'Grapes', 'Strawberries']
     years = ['2015', '2016', '2017']
@@ -54,4 +56,4 @@ def home(request):
 
     script, div = components(plot)
 
-    return render(request, 'base.html', {'script': script, 'div': div})
+    return render(request, 'dashboard.html', {'script': script, 'div': div})
