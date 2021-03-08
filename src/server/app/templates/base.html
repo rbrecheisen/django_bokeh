@@ -12,6 +12,7 @@
         {{ script | safe }}
     </head>
     <body>
+        {% include 'session_security/all.html' %}
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <h3 style="color: gray; margin-left: 10px;">HPB Dashboard</h3>
             <ul class="navbar-nav ms-auto flex-nowrap">
