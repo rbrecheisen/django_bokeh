@@ -8,14 +8,17 @@
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
+                        {{ form.non_field_errors }}
                         <!--{{ form.as_p }}-->
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
+                            {{ form.username.errors }}
                             <input type="input" class="form-control" name="username" id="username"
                                    placeholder="Username" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
+                            {{ form.password.errors }}
                             <input type="password" class="form-control" name="password" id="password"
                                    placeholder="Password" aria-describedby="info" required>
                         </div>

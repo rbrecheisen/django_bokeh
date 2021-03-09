@@ -1,11 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource, FactorRange
 from bokeh.embed import components
 from bokeh.palettes import Spectral6
 from bokeh.transform import factor_cmap
+
+
+def register(request):
+    context = {}
+    form = UserCreationForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('dashboard')
+    context['form'] = form
+    return render(request, 'registration/register.html', context)
 
 
 @login_required
@@ -30,8 +44,6 @@ def dashboard(request):
         x_range=FactorRange(*x_values),
         plot_height=250,
         title='Fruit counts per year',
-        toolbar_location=None,
-        tools='',
     )
 
     plot.vbar(
