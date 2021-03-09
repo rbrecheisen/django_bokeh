@@ -1,6 +1,8 @@
 TODO
 
-- Implement login
+- Implement ...
 
+x Implement account registration
+x Implement login
 x Dockerize
 x Setup NGINX reverse proxy
